@@ -1,0 +1,17 @@
+.settingCounterWrapper{
+    border: 3px solid aquamarine;
+    border-radius: 20px;
+    width: 300px;
+    height: 300px;
+    margin: 10px;
+    background-color:gray;
+    padding: 10px;
+}
+
+.buttonWrapper{
+    margin-top: 10px;
+    border: 2px solid aquamarine;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}

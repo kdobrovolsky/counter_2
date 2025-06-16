@@ -1,0 +1,26 @@
+
+.inputWrapper{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.tableWrapper{
+    border: 2px solid aquamarine;
+    border-radius: 10px;
+    padding: 20px;
+    height: 100px;
+    margin: 20px 0px 30px 0px;
+}
+
+.label{
+    font-weight: 600;
+    font-size: 16px;
+    color: aquamarine;
+}
+
+.inputError{
+    background-color: rgb(189, 98, 98);
+    border: 1px solid red;
+        
+}
