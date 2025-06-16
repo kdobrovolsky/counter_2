@@ -3,27 +3,21 @@ import s from './Counter.module.css'
 import { TableCounter } from "../ui/tableCounter/TableCounter"
 
 export type CounterPropsType = {
-    setCount: (count: number) => void
     count: number
+    handleButtonIncrement: ()=> void
+    handleButtonReset: ()=> void
+    maxValue: number
+    startValue: number
 }
 
 
-export function Counter({setCount,count}:CounterPropsType) {
-
-  
- const  onClickButtonHandlerIncrement = () => {
-    setCount(count+1)
-  }
-  const onClickButtonHandlerReset = () => {
-    setCount(0)
-  }
-
+export function Counter({maxValue,startValue,count,handleButtonIncrement,handleButtonReset}:CounterPropsType) {
   return(
     <div className={s.counterWrapper}>
-        <TableCounter count={count} />
+        <TableCounter count={count} maxValue={maxValue}/>
       <div className={s.buttonWrapper}>
-      <Button title="count" onClick={onClickButtonHandlerIncrement} disabled={count>=5}/>
-      <Button title="reset" onClick={onClickButtonHandlerReset} disabled={count<=0}/>
+      <Button title="count" onClick={handleButtonIncrement} disabled={count>maxValue}/>
+      <Button title="reset" onClick={handleButtonReset} disabled={count<=startValue}/>
       </div>
     </div>
   )
