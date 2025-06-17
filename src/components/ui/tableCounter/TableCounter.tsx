@@ -8,5 +8,5 @@ export type TableCounterPropsType = {
 
 export const TableCounter = ({isInit,error,maxValue,count}:TableCounterPropsType) => {
     const displayValue = error ? error: count && isInit? 'enter values and press "set"' : count
-    return <h1 className={count<maxValue ? s.table : s.tableRed}>{displayValue}</h1>
+    return <h1 className={!error ? s.table : s.tableRed}>{displayValue}</h1>
 }

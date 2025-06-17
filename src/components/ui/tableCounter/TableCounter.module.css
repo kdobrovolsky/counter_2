@@ -6,6 +6,7 @@
    align-items: center;
    justify-content: center;
    border-radius: 10px;
+   color: aquamarine;
 }
 
 .tableRed{
@@ -16,5 +17,5 @@
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    background-color: rgb(202, 94, 94);
+    color: rgb(194, 42, 42);
 }

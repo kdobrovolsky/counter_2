@@ -92,8 +92,6 @@ export function App() {
       error={error}
       isInit = {isInit}
       />
-
-
       <SettingCounter 
       onCounterSet={onCounterSet}
       onChangeMaxValueHandler={onChangeMaxValueHandler} 
@@ -101,6 +99,7 @@ export function App() {
       onChangeStartValueHandler = {onChangeStartValueHandler} 
       startValue={startValue}
       isInvalid={isInvalid}
+      isInit = {isInit}
       />
       
     </div>

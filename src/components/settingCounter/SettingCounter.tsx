@@ -11,9 +11,10 @@ export type SettingCounterPropsType = {
     isInvalid: boolean
     maxValue: number
     startValue:number
+    isInit: boolean
 }
 
-export const SettingCounter = ({isInvalid,startValue,maxValue,onChangeMaxValueHandler,onChangeStartValueHandler, onCounterSet}:SettingCounterPropsType) => {
+export const SettingCounter = ({isInit,isInvalid,startValue,maxValue,onChangeMaxValueHandler,onChangeStartValueHandler, onCounterSet}:SettingCounterPropsType) => {
     
     
     
@@ -28,7 +29,7 @@ export const SettingCounter = ({isInvalid,startValue,maxValue,onChangeMaxValueHa
             
             
             <div className={s.buttonWrapper}>
-            <Button title="set" onClick={onCounterSet} />
+            <Button title="set" onClick={onCounterSet} disabled = {!isInit} />
             </div>
         </div>
     )
