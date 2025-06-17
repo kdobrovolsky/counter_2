@@ -14,9 +14,11 @@ export type CounterPropsType = {
 
 export function Counter({maxValue,startValue,count,handleButtonIncrement,handleButtonReset}:CounterPropsType) {
 
+  
   return(
     <div className={s.counterWrapper}>
         <TableCounter count={count} maxValue={maxValue}/>
+        
       <div className={s.buttonWrapper}>
       <Button title="count" onClick={handleButtonIncrement} disabled={count>=maxValue}/>
       <Button title="reset" onClick={handleButtonReset} disabled={count<=startValue || startValue< 0}/>

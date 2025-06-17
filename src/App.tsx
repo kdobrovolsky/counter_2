@@ -8,7 +8,8 @@ export function App() {
   const [count, setCount] = useState(0);
   const [maxValue, setMaxValue] = useState(0);
   const [startValue, setStartValue] = useState(0);
-  
+  // const [error, setError] = useState<string| null | boolean>(null);
+
   useEffect(()=> {
     const startValueString = localStorage.getItem('startValue')
     const maxValueString = localStorage.getItem('maxValue')
@@ -51,13 +52,18 @@ export function App() {
 
   const onChangeMaxValueHandler = (e:ChangeEvent<HTMLInputElement>) => {
     const value = +(e.target.value);
-    setMaxValue(value);
+      setMaxValue(value)
   }
 
   const onChangeStartValueHandler = (e:ChangeEvent<HTMLInputElement>) => {
     const value = +(e.target.value);
     setStartValue(value);
   }
+
+  
+    const isInvalid = maxValue < startValue || maxValue === startValue || startValue < 0    
+    
+
 
   
 
@@ -69,6 +75,7 @@ export function App() {
       count={count} 
       handleButtonIncrement = {handleButtonIncrement}
       handleButtonReset ={handleButtonReset}
+      
       maxValue={maxValue}
       startValue = {startValue}
      
@@ -80,6 +87,7 @@ export function App() {
       maxValue={maxValue}  
       onChangeStartValueHandler = {onChangeStartValueHandler} 
       startValue={startValue}
+      isInvalid= {isInvalid}
       />
       
     </div>
