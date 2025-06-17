@@ -9,6 +9,7 @@ export function App() {
   const [maxValue, setMaxValue] = useState(0);
   const [startValue, setStartValue] = useState(0);
   const [error,setError] = useState<string|null>(null)
+  const [isInit, setIsInit] = useState(false);
 
   // const [counterState, setCountState] = useState( {
   //   counter: 1,
@@ -63,16 +64,19 @@ export function App() {
     const value = +(e.target.value);
     localStorage.setItem('maxValue', JSON.stringify(value));
     setMaxValue(value);
+    setIsInit(false)
   }
 
   const onChangeStartValueHandler = (e:ChangeEvent<HTMLInputElement>) => {
     const value = +(e.target.value);
     localStorage.setItem('startValue', JSON.stringify(value));
     setStartValue(value);
+    setIsInit(true)
   }
 
   const onCounterSet = () => {
     setCount(startValue)
+    setIsInit(false)
   }
 
   const isInvalid = maxValue < startValue || maxValue === startValue || maxValue < 0 || startValue < 0;
@@ -86,6 +90,7 @@ export function App() {
       maxValue={maxValue}
       startValue = {startValue}
       error={error}
+      isInit = {isInit}
       />
 
 

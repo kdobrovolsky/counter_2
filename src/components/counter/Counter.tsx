@@ -10,15 +10,16 @@ export type CounterPropsType = {
     maxValue: number
     startValue: number
     error: string | null
+    isInit: boolean
 }
 
 
-export function Counter({error,maxValue,startValue,count,handleButtonIncrement,handleButtonReset}:CounterPropsType) {
+export function Counter({isInit,error,maxValue,startValue,count,handleButtonIncrement,handleButtonReset}:CounterPropsType) {
 
   
   return(
     <div className={s.counterWrapper}>
-        <TableCounter count={count} maxValue={maxValue} error={error}/>
+        <TableCounter count={count} maxValue={maxValue} error={error} isInit={isInit}/>
         
       <div className={s.buttonWrapper}>
       <Button title="count" onClick={handleButtonIncrement} disabled={count>=maxValue}/>

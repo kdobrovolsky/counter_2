@@ -28,7 +28,7 @@ export const SettingCounter = ({isInvalid,startValue,maxValue,onChangeMaxValueHa
             
             
             <div className={s.buttonWrapper}>
-            <Button title="set" onClick={onCounterSet}/>
+            <Button title="set" onClick={onCounterSet} />
             </div>
         </div>
     )
