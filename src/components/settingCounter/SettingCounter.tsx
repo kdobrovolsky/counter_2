@@ -6,7 +6,6 @@ import s from './SettingCounter.module.css'
 export type SettingCounterPropsType = {
     onChangeMaxValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
     onChangeStartValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
-
     maxValue: number
     startValue:number
 }

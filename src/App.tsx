@@ -10,31 +10,32 @@ export function App() {
   const [startValue, setStartValue] = useState(0);
   
   useEffect(()=> {
-    let valueString = localStorage.getItem('maxValue')
-    if(valueString){
-      let newValue = JSON.parse(valueString)
-      setMaxValue(newValue)
-    }
+    const startValueString = localStorage.getItem('startValue')
+    const maxValueString = localStorage.getItem('maxValue')
+    if(maxValueString){setStartValue(JSON.parse(maxValueString))}
+    if(startValueString){setStartValue(JSON.parse(startValueString))}
   },[])
 
-  useEffect(()=> {
-    let valueString = localStorage.getItem('startValue')
-    if(valueString){
-      let newValue = JSON.parse(valueString)
-      setStartValue(newValue)
-    }
-  },[])
   
   useEffect(() => {
-    localStorage.setItem('maxValue', JSON.stringify(maxValue));
+   return localStorage.setItem('maxValue', JSON.stringify(maxValue));
   }, [maxValue]);
   
   useEffect(() => {
-    localStorage.setItem('startValue', JSON.stringify(startValue));
+    return localStorage.setItem('startValue', JSON.stringify(startValue));
   }, [startValue]);
 
+  // const setToLocalStorageHandler = () => {
+  //   return (
+  //      localStorage.setItem('startValue', JSON.stringify(startValue)),
+  //      localStorage.setItem('maxValue', JSON.stringify(maxValue))
+  //   )
+  // }
 
-
+  // const getToLocalStorageHandler = () => {
+  //   const startValueString = localStorage.getItem('startValue')
+  //   if(startValueString){setStartValue(JSON.parse(startValueString))}
+  // }
 
 
 
@@ -42,6 +43,7 @@ export function App() {
     if(count<maxValue){
       setCount(prev => prev +1)
     }
+    
   }
   const handleButtonReset = () => {
     setCount(startValue)
@@ -56,6 +58,8 @@ export function App() {
     const value = +(e.target.value);
     setStartValue(value);
   }
+
+  
 
   
 
@@ -76,7 +80,6 @@ export function App() {
       maxValue={maxValue}  
       onChangeStartValueHandler = {onChangeStartValueHandler} 
       startValue={startValue}
-     
       />
       
     </div>
