@@ -8,7 +8,7 @@ export function App() {
   const [count, setCount] = useState(0);
   const [maxValue, setMaxValue] = useState(0);
   const [startValue, setStartValue] = useState(0);
-
+  const [error,setError] = useState<string|null>(null)
 
   // const [counterState, setCountState] = useState( {
   //   counter: 1,
@@ -23,15 +23,13 @@ export function App() {
   //   isInit: false,
   // })
 
-  useEffect(()=> {
-    let valueString = localStorage.getItem('maxValue')
-    if(valueString){
-      let newValue = JSON.parse(valueString)
-      setMaxValue(newValue)
-    }
-  },[])
 
   useEffect(()=> {
+    let maxValueString = localStorage.getItem('maxValue')
+    if(maxValueString){
+      let newValue = JSON.parse(maxValueString)
+      setMaxValue(newValue)
+    }
     let valueString = localStorage.getItem('startValue')
     if(valueString){
       let newValue = JSON.parse(valueString)
@@ -39,6 +37,18 @@ export function App() {
       setCount(newValue)
     }
   },[])
+
+  useEffect(() => {
+    if (startValue < 0 || maxValue < 0) {
+      setError("Values cannot be negative");
+    } else if (maxValue < startValue) {
+      setError("Max value cannot be less than start value");
+    } else if (maxValue === startValue) {
+      setError("Max value cannot equal start value");
+    } else {
+      setError(null);
+    }
+  },[maxValue, startValue])
   
     const handleButtonIncrement = () => {
     if(count<maxValue){
@@ -61,11 +71,11 @@ export function App() {
     setStartValue(value);
   }
 
-  
-
   const onCounterSet = () => {
     setCount(startValue)
   }
+
+  const isInvalid = maxValue < startValue || maxValue === startValue || maxValue < 0 || startValue < 0;
   
   return(
     <div className="app">
@@ -75,7 +85,7 @@ export function App() {
       handleButtonReset ={handleButtonReset}
       maxValue={maxValue}
       startValue = {startValue}
-     
+      error={error}
       />
 
 
@@ -85,7 +95,7 @@ export function App() {
       maxValue={maxValue}  
       onChangeStartValueHandler = {onChangeStartValueHandler} 
       startValue={startValue}
-     
+      isInvalid={isInvalid}
       />
       
     </div>

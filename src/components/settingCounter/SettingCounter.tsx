@@ -8,19 +8,24 @@ export type SettingCounterPropsType = {
     onChangeStartValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
 
     onCounterSet: () => void
-
+    isInvalid: boolean
     maxValue: number
     startValue:number
 }
 
-export const SettingCounter = ({startValue,maxValue,onChangeMaxValueHandler,onChangeStartValueHandler, onCounterSet}:SettingCounterPropsType) => {
+export const SettingCounter = ({isInvalid,startValue,maxValue,onChangeMaxValueHandler,onChangeStartValueHandler, onCounterSet}:SettingCounterPropsType) => {
+    
+    
+    
     return(
         <div className={s.settingCounterWrapper}>
             <TableSettingCounter 
             onChangeStartValueHandler={onChangeStartValueHandler} 
             onChangeMaxValueHandler={onChangeMaxValueHandler} 
             maxValue={maxValue}
-            startValue= {startValue}/>
+            startValue= {startValue}
+            isInvalid={isInvalid}/>
+            
             
             <div className={s.buttonWrapper}>
             <Button title="set" onClick={onCounterSet}/>
