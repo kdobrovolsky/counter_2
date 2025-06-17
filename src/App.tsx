@@ -8,7 +8,21 @@ export function App() {
   const [count, setCount] = useState(0);
   const [maxValue, setMaxValue] = useState(0);
   const [startValue, setStartValue] = useState(0);
+
+
+  // const [counterState, setCountState] = useState( {
+  //   counter: 1,
+  //   error: '',
+
+  // })
   
+  // const [settingsState, setState] = useState( {
+  //   maxValue: 123,
+  //   minValue: 2,
+  //   err: '',
+  //   isInit: false,
+  // })
+
   useEffect(()=> {
     let valueString = localStorage.getItem('maxValue')
     if(valueString){
@@ -22,23 +36,11 @@ export function App() {
     if(valueString){
       let newValue = JSON.parse(valueString)
       setStartValue(newValue)
+      setCount(newValue)
     }
   },[])
   
-  useEffect(() => {
-    localStorage.setItem('maxValue', JSON.stringify(maxValue));
-  }, [maxValue]);
-  
-  useEffect(() => {
-    localStorage.setItem('startValue', JSON.stringify(startValue));
-  }, [startValue]);
-
-
-
-
-
-
-  const handleButtonIncrement = () => {
+    const handleButtonIncrement = () => {
     if(count<maxValue){
       setCount(prev => prev +1)
     }
@@ -49,16 +51,22 @@ export function App() {
 
   const onChangeMaxValueHandler = (e:ChangeEvent<HTMLInputElement>) => {
     const value = +(e.target.value);
+    localStorage.setItem('maxValue', JSON.stringify(value));
     setMaxValue(value);
   }
 
   const onChangeStartValueHandler = (e:ChangeEvent<HTMLInputElement>) => {
     const value = +(e.target.value);
+    localStorage.setItem('startValue', JSON.stringify(value));
     setStartValue(value);
   }
 
   
 
+  const onCounterSet = () => {
+    setCount(startValue)
+  }
+  
   return(
     <div className="app">
       <Counter 
@@ -72,6 +80,7 @@ export function App() {
 
 
       <SettingCounter 
+      onCounterSet={onCounterSet}
       onChangeMaxValueHandler={onChangeMaxValueHandler} 
       maxValue={maxValue}  
       onChangeStartValueHandler = {onChangeStartValueHandler} 

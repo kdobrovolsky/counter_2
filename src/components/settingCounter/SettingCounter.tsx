@@ -7,11 +7,13 @@ export type SettingCounterPropsType = {
     onChangeMaxValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
     onChangeStartValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
 
+    onCounterSet: () => void
+
     maxValue: number
     startValue:number
 }
 
-export const SettingCounter = ({startValue,maxValue,onChangeMaxValueHandler,onChangeStartValueHandler}:SettingCounterPropsType) => {
+export const SettingCounter = ({startValue,maxValue,onChangeMaxValueHandler,onChangeStartValueHandler, onCounterSet}:SettingCounterPropsType) => {
     return(
         <div className={s.settingCounterWrapper}>
             <TableSettingCounter 
@@ -21,7 +23,7 @@ export const SettingCounter = ({startValue,maxValue,onChangeMaxValueHandler,onCh
             startValue= {startValue}/>
             
             <div className={s.buttonWrapper}>
-            <Button title="set" onClick={()=>{}}/>
+            <Button title="set" onClick={onCounterSet}/>
             </div>
         </div>
     )

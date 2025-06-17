@@ -13,11 +13,11 @@ export const TableSettingCounter = ({startValue,maxValue,onChangeMaxValueHandler
         <div className={s.tableWrapper}>
             <div className={s.inputWrapper}>
                 <label className={s.label} >max value:</label>
-                <input type="number" className={maxValue < 0 ? s.inputError: ''} onChange={onChangeMaxValueHandler}/>
+                <input value={maxValue} type="number" className={maxValue < 0 ? s.inputError: ''} onChange={onChangeMaxValueHandler}/>
             </div>
             <div className={s.inputWrapper}>
                 <label className={s.label} >min value:</label>
-                <input type="number" className={startValue < 0 ? s.inputError: ''} onChange={onChangeStartValueHandler}/>
+                <input value={startValue} type="number" className={startValue < 0 ? s.inputError: ''} onChange={onChangeStartValueHandler}/>
             </div>
         </div>
     )
