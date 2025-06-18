@@ -9,6 +9,8 @@ export function App() {
   const [startValue, setStartValue] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [isSettingMode, setIsSettingMode] = useState(false);
+  const [showSetting, setShowSetting] = useState(true)
+  
 
   useEffect(() => {
     const maxValueString = localStorage.getItem("maxValue");
@@ -57,7 +59,12 @@ export function App() {
   const onCounterSet = () => {
     setCount(startValue);
     setIsSettingMode(false);
+    setShowSetting(true)
   };
+
+  const onShowSettingSet = () => {
+    setShowSetting(false)
+  }
 
   const isInvalid =
     maxValue < startValue ||
@@ -67,15 +74,19 @@ export function App() {
 
   return (
     <div className="app">
-      <Counter
-        count={count}
-        handleButtonIncrement={handleButtonIncrement}
-        handleButtonReset={handleButtonReset}
-        maxValue={maxValue}
-        startValue={startValue}
-        error={error}
-        isSettingMode={isSettingMode}
-      />
+      
+      {showSetting?(
+          <Counter
+          count={count}
+          handleButtonIncrement={handleButtonIncrement}
+          handleButtonReset={handleButtonReset}
+          maxValue={maxValue}
+          startValue={startValue}
+          error={error}
+          isSettingMode={isSettingMode}
+          onShowSettingSet = {onShowSettingSet}
+        />
+      ):
       <SettingCounter
         onCounterSet={onCounterSet}
         onChangeMaxValueHandler={onChangeMaxValueHandler}
@@ -85,6 +96,7 @@ export function App() {
         isInvalid={isInvalid}
         isSettingMode={isSettingMode}
       />
+      }
     </div>
   );
 }

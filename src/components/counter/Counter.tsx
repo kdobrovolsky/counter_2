@@ -6,6 +6,7 @@ export type CounterPropsType = {
   count: number;
   handleButtonIncrement: () => void;
   handleButtonReset: () => void;
+  onShowSettingSet: () => void;
   maxValue: number;
   startValue: number;
   error: string | null;
@@ -20,6 +21,7 @@ export function Counter({
   count,
   handleButtonIncrement,
   handleButtonReset,
+  onShowSettingSet,
 }: CounterPropsType) {
   return (
       <div className={s.counterWrapper}>
@@ -42,6 +44,11 @@ export function Counter({
           onClick={handleButtonReset}
           disabled={count <= startValue}
         />
+          <Button
+          title="set"
+          onClick={onShowSettingSet}
+        /> 
+
       </div>
     </div>
   );

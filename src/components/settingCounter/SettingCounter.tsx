@@ -6,7 +6,6 @@ import s from "./SettingCounter.module.css";
 export type SettingCounterPropsType = {
   onChangeMaxValueHandler: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangeStartValueHandler: (e: ChangeEvent<HTMLInputElement>) => void;
-
   onCounterSet: () => void;
   isInvalid: boolean;
   maxValue: number;
@@ -23,7 +22,14 @@ export const SettingCounter = ({
   onChangeStartValueHandler,
   onCounterSet,
 }: SettingCounterPropsType) => {
-  return (
+    
+    // const ononShowSettingSetHandler = () => {
+    //     if(onCounterSet){
+
+    //     }
+    // }
+  
+    return (
     <div className={s.settingCounterWrapper}>
       <TableSettingCounter
         onChangeStartValueHandler={onChangeStartValueHandler}
