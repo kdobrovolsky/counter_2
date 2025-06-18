@@ -9,7 +9,10 @@ export function App() {
   const [startValue, setStartValue] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [isSettingMode, setIsSettingMode] = useState(false);
-  const [showSetting, setShowSetting] = useState(true);
+  const [showSetting, setShowSetting] = useState(()=> {
+    const saved = localStorage.getItem("showSetting");
+    return saved !== null ? JSON.parse(saved) : true;
+  });
 
   useEffect(() => {
     const maxValueString = localStorage.getItem("maxValue");
@@ -20,6 +23,10 @@ export function App() {
       setCount(JSON.parse(valueString));
     }
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("showSetting", JSON.stringify(showSetting));
+  }, [showSetting]);
 
   useEffect(() => {
     if (startValue < 0 || maxValue < 0) {
