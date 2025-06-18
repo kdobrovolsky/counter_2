@@ -9,8 +9,7 @@ export function App() {
   const [startValue, setStartValue] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [isSettingMode, setIsSettingMode] = useState(false);
-  const [showSetting, setShowSetting] = useState(true)
-  
+  const [showSetting, setShowSetting] = useState(true);
 
   useEffect(() => {
     const maxValueString = localStorage.getItem("maxValue");
@@ -29,15 +28,17 @@ export function App() {
       setError("Max value cannot be less than start value!");
     } else if (maxValue === startValue) {
       setError("Max value cannot equal start value!");
+    } else if (isNaN(startValue) || isNaN(maxValue)) {
+      setError("Values must be valid numbers!");
     } else {
       setError(null);
     }
   }, [maxValue, startValue]);
 
   const handleButtonIncrement = () => {
-     if (count < maxValue) setCount((prev) => prev + 1);
+    if (count < maxValue) setCount((prev) => prev + 1);
   };
-  
+
   const handleButtonReset = () => {
     setCount(startValue);
   };
@@ -46,7 +47,7 @@ export function App() {
     const value = +e.target.value;
     localStorage.setItem("maxValue", JSON.stringify(value));
     setMaxValue(value);
-    setIsSettingMode(false);
+    setIsSettingMode(true);
   };
 
   const onChangeStartValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -59,12 +60,12 @@ export function App() {
   const onCounterSet = () => {
     setCount(startValue);
     setIsSettingMode(false);
-    setShowSetting(true)
+    setShowSetting(true);
   };
 
   const onShowSettingSet = () => {
-    setShowSetting(false)
-  }
+    setShowSetting(false);
+  };
 
   const isInvalid =
     maxValue < startValue ||
@@ -74,9 +75,8 @@ export function App() {
 
   return (
     <div className="app">
-      
-      {showSetting?(
-          <Counter
+      {showSetting ? (
+        <Counter
           count={count}
           handleButtonIncrement={handleButtonIncrement}
           handleButtonReset={handleButtonReset}
@@ -84,19 +84,19 @@ export function App() {
           startValue={startValue}
           error={error}
           isSettingMode={isSettingMode}
-          onShowSettingSet = {onShowSettingSet}
+          onShowSettingSet={onShowSettingSet}
         />
-      ):
-      <SettingCounter
-        onCounterSet={onCounterSet}
-        onChangeMaxValueHandler={onChangeMaxValueHandler}
-        maxValue={maxValue}
-        onChangeStartValueHandler={onChangeStartValueHandler}
-        startValue={startValue}
-        isInvalid={isInvalid}
-        isSettingMode={isSettingMode}
-      />
-      }
+      ) : (
+        <SettingCounter
+          onCounterSet={onCounterSet}
+          onChangeMaxValueHandler={onChangeMaxValueHandler}
+          maxValue={maxValue}
+          onChangeStartValueHandler={onChangeStartValueHandler}
+          startValue={startValue}
+          isInvalid={isInvalid}
+          isSettingMode={isSettingMode}
+        />
+      )}
     </div>
   );
 }

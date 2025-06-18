@@ -14,7 +14,7 @@ export type SettingCounterPropsType = {
 };
 
 export const SettingCounter = ({
-    isSettingMode,
+  isSettingMode,
   isInvalid,
   startValue,
   maxValue,
@@ -22,14 +22,7 @@ export const SettingCounter = ({
   onChangeStartValueHandler,
   onCounterSet,
 }: SettingCounterPropsType) => {
-    
-    // const ononShowSettingSetHandler = () => {
-    //     if(onCounterSet){
-
-    //     }
-    // }
-  
-    return (
+  return (
     <div className={s.settingCounterWrapper}>
       <TableSettingCounter
         onChangeStartValueHandler={onChangeStartValueHandler}

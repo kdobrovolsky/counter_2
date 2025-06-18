@@ -23,9 +23,9 @@ export function Counter({
   handleButtonReset,
   onShowSettingSet,
 }: CounterPropsType) {
+  
   return (
-      <div className={s.counterWrapper}>
-      
+    <div className={s.counterWrapper}>
       <TableCounter
         count={count}
         maxValue={maxValue}
@@ -44,11 +44,7 @@ export function Counter({
           onClick={handleButtonReset}
           disabled={count <= startValue}
         />
-          <Button
-          title="set"
-          onClick={onShowSettingSet}
-        /> 
-
+        <Button title="set" onClick={onShowSettingSet} />
       </div>
     </div>
   );
