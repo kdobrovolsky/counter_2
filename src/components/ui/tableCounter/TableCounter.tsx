@@ -6,7 +6,7 @@ export type TableCounterPropsType = {
     isInit: boolean
 }
 
-export const TableCounter = ({isInit,error,maxValue,count}:TableCounterPropsType) => {
+export const TableCounter = ({isInit,error,count}:TableCounterPropsType) => {
     const displayValue = error ? error: count && isInit? 'enter values and press "set"' : count
     return <h1 className={!error ? s.table : s.tableRed}>{displayValue}</h1>
 }
