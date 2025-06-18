@@ -11,11 +11,11 @@ export type SettingCounterPropsType = {
   isInvalid: boolean;
   maxValue: number;
   startValue: number;
-  isInit: boolean;
+  isSettingMode: boolean;
 };
 
 export const SettingCounter = ({
-  isInit,
+    isSettingMode,
   isInvalid,
   startValue,
   maxValue,
@@ -37,7 +37,7 @@ export const SettingCounter = ({
         <Button
           title="set"
           onClick={onCounterSet}
-          disabled={!isInit || isInvalid}
+          disabled={!isSettingMode || isInvalid}
         />
       </div>
     </div>

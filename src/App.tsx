@@ -8,7 +8,7 @@ export function App() {
   const [maxValue, setMaxValue] = useState(0);
   const [startValue, setStartValue] = useState(0);
   const [error, setError] = useState<string | null>(null);
-  const [isInit, setIsInit] = useState(false);
+  const [isSettingMode, setIsSettingMode] = useState(false);
 
   useEffect(() => {
     const maxValueString = localStorage.getItem("maxValue");
@@ -22,11 +22,11 @@ export function App() {
 
   useEffect(() => {
     if (startValue < 0 || maxValue < 0) {
-      setError("Values cannot be negative");
+      setError("Values cannot be negative!");
     } else if (maxValue < startValue) {
-      setError("Max value cannot be less than start value");
+      setError("Max value cannot be less than start value!");
     } else if (maxValue === startValue) {
-      setError("Max value cannot equal start value");
+      setError("Max value cannot equal start value!");
     } else {
       setError(null);
     }
@@ -44,19 +44,19 @@ export function App() {
     const value = +e.target.value;
     localStorage.setItem("maxValue", JSON.stringify(value));
     setMaxValue(value);
-    setIsInit(false);
+    setIsSettingMode(false);
   };
 
   const onChangeStartValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const value = +e.target.value;
     localStorage.setItem("startValue", JSON.stringify(value));
     setStartValue(value);
-    setIsInit(true);
+    setIsSettingMode(true);
   };
 
   const onCounterSet = () => {
     setCount(startValue);
-    setIsInit(false);
+    setIsSettingMode(false);
   };
 
   const isInvalid =
@@ -74,7 +74,7 @@ export function App() {
         maxValue={maxValue}
         startValue={startValue}
         error={error}
-        isInit={isInit}
+        isSettingMode={isSettingMode}
       />
       <SettingCounter
         onCounterSet={onCounterSet}
@@ -83,7 +83,7 @@ export function App() {
         onChangeStartValueHandler={onChangeStartValueHandler}
         startValue={startValue}
         isInvalid={isInvalid}
-        isInit={isInit}
+        isSettingMode={isSettingMode}
       />
     </div>
   );

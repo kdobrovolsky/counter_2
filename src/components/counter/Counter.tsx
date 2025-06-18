@@ -9,11 +9,11 @@ export type CounterPropsType = {
   maxValue: number;
   startValue: number;
   error: string | null;
-  isInit: boolean;
+  isSettingMode: boolean;
 };
 
 export function Counter({
-  isInit,
+  isSettingMode,
   error,
   maxValue,
   startValue,
@@ -28,7 +28,7 @@ export function Counter({
         count={count}
         maxValue={maxValue}
         error={error}
-        isInit={isInit}
+        isSettingMode={isSettingMode}
       />
 
       <div className={s.buttonWrapper}>
@@ -40,7 +40,7 @@ export function Counter({
         <Button
           title="reset"
           onClick={handleButtonReset}
-          disabled={count <= startValue || startValue < 0}
+          disabled={count <= startValue}
         />
       </div>
     </div>

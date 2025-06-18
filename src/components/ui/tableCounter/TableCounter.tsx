@@ -3,10 +3,10 @@ export type TableCounterPropsType = {
     count: number
     maxValue: number
     error: string | null
-    isInit: boolean
+    isSettingMode: boolean
 }
 
-export const TableCounter = ({isInit,error,count}:TableCounterPropsType) => {
-    const displayValue = error ? error: count && isInit? 'enter values and press "set"' : count
+export const TableCounter = ({isSettingMode,error,count}:TableCounterPropsType) => {
+    const displayValue = error ? error: count && isSettingMode? 'enter values and press "set"' : count
     return <h1 className={!error ? s.table : s.tableRed}>{displayValue}</h1>
 }
