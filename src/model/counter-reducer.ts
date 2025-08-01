@@ -49,9 +49,18 @@ export const counterReducer = createReducer(initialState, (builder) => {
             state.isSettingMode = false;
         })
         .addCase(validateValuesAC, (state) => {
-            state.error =
-                state.maxValue <= state.startValue || state.maxValue < 0 || state.startValue < 0
-                    ? "Invalid values"
-                    : null;
-        });
+            if (state.startValue < 0 || state.maxValue < 0) {
+                state.error = "Values cannot be negative!";
+            } else if (state.maxValue < state.startValue) {
+                state.error = "Max value cannot be less than start value!";
+            } else if (state.maxValue === state.startValue) {
+                state.error = "Max value cannot equal start value!";
+            } else if (isNaN(state.startValue) || isNaN(state.maxValue)) {
+                state.error = "Values must be valid numbers!";
+            } else {
+                state.error = null;
+            }
+            state.isInvalid = !!state.error;
+        })
+
 });
