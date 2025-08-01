@@ -6,14 +6,15 @@ type CounterState = {
     startValue: number;
     error: string | null;
     isSettingMode: boolean;
+    isInvalid: boolean;
 }
 
 export const incrementAC = createAction('counter/increment')
 export const resetAC = createAction('counter/reset')
 export const maxValueAC = createAction<number>('counter/maxValue')
 export const startValueAC = createAction<number>('counter/startValue')
-export const setCounterAC = createAction<number>('counter/setCounter')
-export const validateValuesAC = createAction<number>('counter/validate')
+export const setCounterAC = createAction('counter/setCounter')
+export const validateValuesAC = createAction('counter/validate')
 
 
 const initialState:CounterState = {
@@ -21,7 +22,8 @@ const initialState:CounterState = {
     maxValue: 0,
     startValue: 0,
     error: null,
-    isSettingMode: false
+    isSettingMode: false,
+    isInvalid: false
 }
 
 export const counterReducer = createReducer(initialState, (builder) => {
@@ -42,9 +44,9 @@ export const counterReducer = createReducer(initialState, (builder) => {
             state.startValue = action.payload;
             state.isSettingMode = true;
         })
-        .addCase(setCounterAC, (state, action) => {
-            state.count = action.payload;
-            state.isSettingMode = true;
+        .addCase(setCounterAC, (state) => {
+            state.count = state.startValue
+            state.isSettingMode = false;
         })
         .addCase(validateValuesAC, (state) => {
             state.error =

@@ -1,14 +1,23 @@
-import { ChangeEvent, useEffect, useState } from "react";
-import { Counter } from "../components/counter/Counter.tsx";
+import {ChangeEvent} from "react";
+import {Counter} from "../components/counter/Counter.tsx";
 import "./App.css";
-import { SettingCounter } from "../components/settingCounter/SettingCounter.tsx";
+import {SettingCounter} from "../components/settingCounter/SettingCounter.tsx";
+import {RootState} from "./store.ts";
+import {useAppSelector} from "../hooks/useAppSelectore.ts";
+import {useAppDispatch} from "../hooks/useAppDispatch.ts";
+import {
+  incrementAC,
+  maxValueAC,
+  resetAC,
+  setCounterAC,
+  startValueAC,
+  validateValuesAC
+} from "../model/counter-reducer.ts";
 
 export function App() {
-  const [count, setCount] = useState(0);
-  const [maxValue, setMaxValue] = useState(0);
-  const [startValue, setStartValue] = useState(0);
-  const [error, setError] = useState<string | null>(null);
-  const [isSettingMode, setIsSettingMode] = useState(false);
+
+  const dispatch = useAppDispatch();
+  const counter = useAppSelector((state: RootState) => state.counter);
 
   // const [showSetting, setShowSetting] = useState(()=> {
   //   const saved = localStorage.getItem("showSetting");
@@ -44,65 +53,58 @@ export function App() {
   // }, [maxValue, startValue]);
 
   const handleButtonIncrement = () => {
-    if (count < maxValue) setCount((prev) => prev + 1);
+    dispatch(incrementAC())
   };
 
   const handleButtonReset = () => {
-    setCount(startValue);
+    dispatch(resetAC())
   };
 
   const onChangeMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const value = +e.target.value;
     localStorage.setItem("maxValue", JSON.stringify(value));
-    setMaxValue(value);
-    setIsSettingMode(true);
+    // setIsSettingMode(true);
+    dispatch(maxValueAC(value));
   };
 
   const onChangeStartValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const value = +e.target.value;
     localStorage.setItem("startValue", JSON.stringify(value));
-    setStartValue(value);
-    setIsSettingMode(true);
+    dispatch(startValueAC(value));
   };
 
   const onCounterSet = () => {
-    setCount(startValue);
-    setIsSettingMode(false);
-    // setShowSetting(true);
+    dispatch(setCounterAC());
   };
 
   const onShowSettingSet = () => {
     // setShowSetting(false);
   };
 
-  const isInvalid =
-    maxValue < startValue ||
-    maxValue === startValue ||
-    maxValue < 0 ||
-    startValue < 0;
+  dispatch(validateValuesAC())
 
   return (
     <div className="app">
       {/*{showSetting ? (*/}
         <Counter
-          count={count}
+          count={counter.count}
           handleButtonIncrement={handleButtonIncrement}
           handleButtonReset={handleButtonReset}
-          maxValue={maxValue}
-          startValue={startValue}
-          error={error}
-          isSettingMode={isSettingMode}
+          maxValue={counter.maxValue}
+          startValue={counter.startValue}
+          error={counter.error}
+          isSettingMode={counter.isSettingMode}
           onShowSettingSet={onShowSettingSet}
         />
       ) : (
         <SettingCounter
           onCounterSet={onCounterSet}
           onChangeMaxValueHandler={onChangeMaxValueHandler}
-          maxValue={maxValue}
+          maxValue={counter.maxValue}
           onChangeStartValueHandler={onChangeStartValueHandler}
-          startValue={startValue}
-          isInvalid={isInvalid}
-          isSettingMode={isSettingMode}
+          startValue={counter.startValue}
+          isInvalid={counter.isInvalid}
+          isSettingMode={counter.isSettingMode}
         />
       {/*)}*/}
     </div>
