@@ -1,9 +1,10 @@
 import { ChangeEvent } from "react";
-import { Button } from "../ui/button/Button";
-import { TableSettingCounter } from "../ui/tableSettingCounter/TableSettingCounter";
 import s from "./SettingCounter.module.css";
-import {useAppSelector} from "../../hooks/useAppSelector.ts";
-import {selectCounter} from "../../model/counter-selector.ts";
+import {selectCounter} from "@/model/counter-selector.ts";
+import {useAppSelector} from "@/common/hooks/useAppSelector.ts";
+import {TableSettingCounter} from "@/common/components/ui/tableSettingCounter/TableSettingCounter.tsx";
+import {Button} from "@/common/components/ui/button/Button.tsx";
+
 
 export type SettingCounterPropsType = {
   onChangeMaxValueHandler: (e: ChangeEvent<HTMLInputElement>) => void;

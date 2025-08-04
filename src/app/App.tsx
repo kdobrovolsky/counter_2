@@ -1,8 +1,6 @@
 import {ChangeEvent} from "react";
-import {Counter} from "../components/counter/Counter.tsx";
 import "./App.css";
-import {SettingCounter} from "../components/settingCounter/SettingCounter.tsx";
-import {useAppDispatch} from "../hooks/useAppDispatch.ts";
+import {useAppDispatch} from "@/common/hooks/useAppDispatch";
 import {
   incrementAC,
   maxValueAC,
@@ -10,7 +8,9 @@ import {
   setCounterAC,
   startValueAC,
   validateValuesAC
-} from "../model/counter-reducer.ts";
+} from "@/model/counter-reducer";
+import {Counter} from "@/common/components/counter/Counter";
+import {SettingCounter} from "@/common/components/settingCounter/SettingCounter";
 
 export function App() {
   // const [count, setCount] = useState(0);

@@ -1,7 +1,8 @@
 import {ChangeEvent} from "react";
 import s from "./TableSettingCounter.module.css";
-import {useAppSelector} from "../../../hooks/useAppSelector.ts";
-import {selectCounter} from "../../../model/counter-selector.ts";
+import {selectCounter} from "@/model/counter-selector.ts";
+import {useAppSelector} from "@/common/hooks/useAppSelector.ts";
+
 
 export type TableSettingCounterType = {
     onChangeMaxValueHandler: (e: ChangeEvent<HTMLInputElement>) => void;

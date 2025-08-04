@@ -1,8 +1,12 @@
-import { Button } from "../ui/button/Button";
-import s from "./Counter.module.css";
-import { TableCounter } from "../ui/tableCounter/TableCounter";
-import {useAppSelector} from "../../hooks/useAppSelector.ts";
-import {selectCounter} from "../../model/counter-selector.ts";
+
+import s from  "@/common/components/counter/Counter.module.css"
+import {selectCounter} from "@/model/counter-selector.ts";
+import {useAppSelector} from "@/common/hooks/useAppSelector.ts";
+import {TableCounter} from "@/common/components/ui/tableCounter/TableCounter.tsx";
+import {Button} from "@/common/components/ui/button/Button.tsx";
+
+
+
 
 export type CounterPropsType = {
   handleButtonIncrement: () => void;
