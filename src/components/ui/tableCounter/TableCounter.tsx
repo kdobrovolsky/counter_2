@@ -1,6 +1,6 @@
 import s from './TableCounter.module.css'
 import {useAppSelector} from "../../../hooks/useAppSelector.ts";
-import {selectCounter} from "../../../model/counterSelectors.ts";
+import {selectCounter} from "../../../model/counter-selector.ts";
 
 export const TableCounter = () => {
     const counter = useAppSelector(selectCounter);

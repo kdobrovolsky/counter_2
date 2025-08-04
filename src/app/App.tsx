@@ -49,7 +49,7 @@ export function App() {
 
   const onChangeMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const value = +e.target.value;
-    localStorage.setItem("maxValue", JSON.stringify(value));
+    // localStorage.setItem("maxValue", JSON.stringify(value));
     // setIsSettingMode(true);
     dispatch(maxValueAC(value));
     dispatch(validateValuesAC())
@@ -57,7 +57,7 @@ export function App() {
 
   const onChangeStartValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const value = +e.target.value;
-    localStorage.setItem("startValue", JSON.stringify(value));
+    // localStorage.setItem("startValue", JSON.stringify(value));
     dispatch(startValueAC(value));
     dispatch(validateValuesAC())
   };
@@ -69,8 +69,6 @@ export function App() {
   // const onShowSettingSet = () => {
   //   // setShowSetting(false);
   // };
-
-
 
   return (
     <div className="app">

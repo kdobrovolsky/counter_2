@@ -3,7 +3,7 @@ import { Button } from "../ui/button/Button";
 import { TableSettingCounter } from "../ui/tableSettingCounter/TableSettingCounter";
 import s from "./SettingCounter.module.css";
 import {useAppSelector} from "../../hooks/useAppSelector.ts";
-import {selectCounter} from "../../model/counterSelectors.ts";
+import {selectCounter} from "../../model/counter-selector.ts";
 
 export type SettingCounterPropsType = {
   onChangeMaxValueHandler: (e: ChangeEvent<HTMLInputElement>) => void;
