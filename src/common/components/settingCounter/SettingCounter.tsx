@@ -31,7 +31,7 @@ export const SettingCounter = ({
         <Button
           title="set"
           onClick={onCounterSet}
-          disabled={!counter.isSettingMode || counter.isInvalid}
+          disabled={!counter.isSettingMode || counter.isInvalid }
         />
       </div>
     </div>

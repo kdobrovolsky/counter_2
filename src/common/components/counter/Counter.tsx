@@ -30,12 +30,12 @@ export function Counter({
         <Button
           title="count"
           onClick={handleButtonIncrement}
-          disabled={counter.count >= counter.maxValue}
+          disabled={counter.count >= counter.maxValue }
         />
         <Button
           title="reset"
           onClick={handleButtonReset}
-          disabled={counter.count <= counter.startValue}
+          disabled={counter.count <= counter.startValue || counter.isInvalid}
         />
         {/*<Button title="set" onClick={onShowSettingSet} />*/}
       </div>
