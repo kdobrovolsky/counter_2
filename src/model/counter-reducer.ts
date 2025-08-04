@@ -9,10 +9,10 @@ type CounterState = {
     isInvalid: boolean;
 }
 
-export const incrementAC = createAction('counter/increment')
-export const resetAC = createAction('counter/reset')
 export const maxValueAC = createAction<number>('counter/maxValue')
 export const startValueAC = createAction<number>('counter/startValue')
+export const incrementAC = createAction('counter/increment')
+export const resetAC = createAction('counter/reset')
 export const setCounterAC = createAction('counter/setCounter')
 export const validateValuesAC = createAction('counter/validate')
 

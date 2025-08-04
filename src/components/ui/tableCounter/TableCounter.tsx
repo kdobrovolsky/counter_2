@@ -1,12 +1,9 @@
 import s from './TableCounter.module.css'
-export type TableCounterPropsType = {
-    count: number
-    maxValue: number
-    error: string | null
-    isSettingMode: boolean
-}
+import {useAppSelector} from "../../../hooks/useAppSelector.ts";
+import {selectCounter} from "../../../model/counterSelectors.ts";
 
-export const TableCounter = ({isSettingMode,error,count}:TableCounterPropsType) => {
-    const displayValue = error ? error: count && isSettingMode? 'enter values and press "set"' : count
-    return <h1 className={!error ? s.table : s.tableRed}>{displayValue}</h1>
+export const TableCounter = () => {
+    const counter = useAppSelector(selectCounter);
+    const displayValue = counter.error ? counter.error: counter.count && counter.isSettingMode? 'enter values and press "set"' : counter.count
+    return <h1 className={!counter.error ? s.table : s.tableRed}>{displayValue}</h1>
 }

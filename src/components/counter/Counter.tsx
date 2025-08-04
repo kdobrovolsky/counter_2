@@ -1,50 +1,39 @@
 import { Button } from "../ui/button/Button";
 import s from "./Counter.module.css";
 import { TableCounter } from "../ui/tableCounter/TableCounter";
+import {useAppSelector} from "../../hooks/useAppSelector.ts";
+import {selectCounter} from "../../model/counterSelectors.ts";
 
 export type CounterPropsType = {
-  count: number;
   handleButtonIncrement: () => void;
   handleButtonReset: () => void;
-  onShowSettingSet: () => void;
-  maxValue: number;
-  startValue: number;
-  error: string | null;
-  isSettingMode: boolean;
+
 };
 
 export function Counter({
-  isSettingMode,
-  error,
-  maxValue,
-  startValue,
-  count,
   handleButtonIncrement,
   handleButtonReset,
-  onShowSettingSet,
 }: CounterPropsType) {
-  
+
+
+  const counter = useAppSelector(selectCounter);
+
   return (
     <div className={s.counterWrapper}>
-      <TableCounter
-        count={count}
-        maxValue={maxValue}
-        error={error}
-        isSettingMode={isSettingMode}
-      />
+      <TableCounter/>
 
       <div className={s.buttonWrapper}>
         <Button
           title="count"
           onClick={handleButtonIncrement}
-          disabled={count >= maxValue}
+          disabled={counter.count >= counter.maxValue}
         />
         <Button
           title="reset"
           onClick={handleButtonReset}
-          disabled={count <= startValue}
+          disabled={counter.count <= counter.startValue}
         />
-        <Button title="set" onClick={onShowSettingSet} />
+        {/*<Button title="set" onClick={onShowSettingSet} />*/}
       </div>
     </div>
   );

@@ -2,7 +2,6 @@ import {ChangeEvent} from "react";
 import {Counter} from "../components/counter/Counter.tsx";
 import "./App.css";
 import {SettingCounter} from "../components/settingCounter/SettingCounter.tsx";
-import {useAppSelector} from "../hooks/useAppSelectore.ts";
 import {useAppDispatch} from "../hooks/useAppDispatch.ts";
 import {
   incrementAC,
@@ -12,7 +11,6 @@ import {
   startValueAC,
   validateValuesAC
 } from "../model/counter-reducer.ts";
-import {selectCounter} from "../model/counterSelectors.ts";
 
 export function App() {
   // const [count, setCount] = useState(0);
@@ -40,7 +38,6 @@ export function App() {
   // }, [showSetting]);
 
   const dispatch = useAppDispatch();
-  const counter = useAppSelector(selectCounter);
 
   const handleButtonIncrement = () => {
     dispatch(incrementAC())
@@ -55,46 +52,38 @@ export function App() {
     localStorage.setItem("maxValue", JSON.stringify(value));
     // setIsSettingMode(true);
     dispatch(maxValueAC(value));
+    dispatch(validateValuesAC())
   };
 
   const onChangeStartValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const value = +e.target.value;
     localStorage.setItem("startValue", JSON.stringify(value));
     dispatch(startValueAC(value));
+    dispatch(validateValuesAC())
   };
 
   const onCounterSet = () => {
     dispatch(setCounterAC());
   };
 
-  const onShowSettingSet = () => {
-    // setShowSetting(false);
-  };
+  // const onShowSettingSet = () => {
+  //   // setShowSetting(false);
+  // };
 
-  dispatch(validateValuesAC())
+
 
   return (
     <div className="app">
       {/*{showSetting ? (*/}
         <Counter
-          count={counter.count}
-          handleButtonIncrement={handleButtonIncrement}
-          handleButtonReset={handleButtonReset}
-          maxValue={counter.maxValue}
-          startValue={counter.startValue}
-          error={counter.error}
-          isSettingMode={counter.isSettingMode}
-          onShowSettingSet={onShowSettingSet}
+        handleButtonIncrement={handleButtonIncrement}
+        handleButtonReset={handleButtonReset}
         />
       ) : (
         <SettingCounter
           onCounterSet={onCounterSet}
           onChangeMaxValueHandler={onChangeMaxValueHandler}
-          maxValue={counter.maxValue}
           onChangeStartValueHandler={onChangeStartValueHandler}
-          startValue={counter.startValue}
-          isInvalid={counter.isInvalid}
-          isSettingMode={counter.isSettingMode}
         />
       {/*)}*/}
     </div>
